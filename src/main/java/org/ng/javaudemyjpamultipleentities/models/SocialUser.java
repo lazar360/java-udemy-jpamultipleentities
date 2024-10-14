@@ -3,6 +3,9 @@ package org.ng.javaudemyjpamultipleentities.models;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Profile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class SocialUser {
     @Id
@@ -10,7 +13,8 @@ public class SocialUser {
     private Long id;
 
     @OneToOne(mappedBy = "user")
-    //@JoinColumn(name = "social_profile_id")
     private SocialProfile socialProfile;
 
+    @OneToMany(mappedBy = "socialUser")
+    private List<Post> posts = new ArrayList<>();
 }
