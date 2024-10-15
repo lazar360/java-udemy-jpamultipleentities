@@ -25,9 +25,8 @@ public class SocialService {
     }
 
     public void deleteUser(Long userId) {
-        socialUserRepository.findAll().stream()
-                .filter(existingUser -> Objects.equals(existingUser.getId(), userId))
-                .findFirst()
+        socialUserRepository
+                .findById(userId)
                 .ifPresentOrElse(socialUser -> socialUserRepository.delete(socialUser), this::throwException);
     }
 
